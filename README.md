@@ -10,6 +10,13 @@ Examples do work with Arduino Uno
 
 >  tinygo flash --target=arduino cmd/traffic-light/light.go
 
+## hello-display
+
+[turorial](https://www.arduino.cc/en/Tutorial/HelloWorld)
+[image](https://www.arduino.cc/en/uploads/Tutorial/LCD_Base_bb_Fritz.png)
+
+>  tinygo flash --target=arduino cmd/hello-display/display.go
+
 ## Common Problems
 
 > avrdude: ser_open(): can't open device "/dev/ttyACM0": Permission denied
