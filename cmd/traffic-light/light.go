@@ -20,6 +20,7 @@ func main() {
 
 	testLEDs(redLED, yellowLED, greenLED)
 
+	sleep(2000)
 	// Traffic-Lights
 	// RED
 	// RED-YELLOW
@@ -32,20 +33,21 @@ func main() {
 		redLED.High()
 		sleep(1000)
 		yellowLED.High()
-		time.Sleep(500)
+		sleep(1000)
 		redLED.Low()
-		time.Sleep(1000)
+		sleep(1000)
 		yellowLED.Low()
 		greenLED.High()
-		time.Sleep(1000)
+		sleep(1000)
 		greenLED.Low()
 		yellowLED.High()
-		time.Sleep(1000)
+		sleep(1000)
+		yellowLED.Low()
 	}
 }
 
 func sleep(duration time.Duration) {
-	time.Sleep(time.Millisecond * 1000)
+	time.Sleep(time.Millisecond * duration)
 }
 
 func testLEDs(redLED, yellowLED, greenLED machine.Pin) {
