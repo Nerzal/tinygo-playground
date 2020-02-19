@@ -1,0 +1,59 @@
+#myCarousel {
+    height: 100vh;
+    width: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.carousel,
+.item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-inner>.item>img {
+    height: 100%;
+}
+
+.header-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 280px;
+    object-fit: contain;
+}
+
+.main-content {
+    height: 480px;
+}
+
+hr {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 8px auto;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 1px solid #aaaaaa;
+    border-bottom: 1px solid #ffffff;
+}
+
+.message-list-message {
+    display: block;
+}
+
+li {
+    display: inline-block;
+}

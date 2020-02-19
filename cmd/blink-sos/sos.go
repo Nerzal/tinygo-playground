@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	led := machine.LED
+	led := machine.Pin(12)
 	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
+	// while(true)
 	for {
 		blink3(led, 500, 350)
 

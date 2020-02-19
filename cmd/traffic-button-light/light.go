@@ -9,9 +9,6 @@ import (
 func main() {
 	pingConfig := machine.PinConfig{Mode: machine.PinOutput}
 
-	buttonIn := machine.Pin(2)
-	buttonIn.Configure(machine.PinConfig{Mode: machine.PinInput})
-
 	greenLED := machine.Pin(12)
 	greenLED.Configure(pingConfig)
 
@@ -31,18 +28,8 @@ func main() {
 	// GREEN
 	// YELLOW
 	// RED
-	foo := make(chan bool, 1)
-
-	go checkButton(buttonIn, foo)
 
 	for {
-		if <-foo {
-			redLED.Low()
-			yellowLED.Low()
-			redLED.Low()
-			sleep(10000)
-		}
-
 		redLED.High()
 		sleep(1000)
 		yellowLED.High()
@@ -56,16 +43,6 @@ func main() {
 		yellowLED.High()
 		sleep(1000)
 		yellowLED.Low()
-	}
-}
-
-func checkButton(button machine.Pin, foo chan bool) {
-	for {
-		if button.Get() {
-			foo <- true
-		} else {
-			foo <- false
-		}
 	}
 }
 

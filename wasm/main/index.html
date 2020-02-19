@@ -1,0 +1,107 @@
+<!doctype html>
+<!--
+Copyright 2018 The Go Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TinyGo</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/basicstyle.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	 <![endif]-->
+</head>
+
+<body>
+    <!--
+	Add the following polyfill for Microsoft Edge 17/18 support:
+	<script src="https://cdn.jsdelivr.net/npm/text-encoding@0.7.0/lib/encoding.min.js"></script>
+	(see https://caniuse.com/#feat=textencoder)
+	-->
+    <script src="wasm_exec.js"></script>
+    <script>
+        if (!WebAssembly.instantiateStreaming) { // polyfill
+            WebAssembly.instantiateStreaming = async(resp, importObject) => {
+                const source = await (await resp).arrayBuffer();
+                return await WebAssembly.instantiate(source, importObject);
+            };
+        }
+
+        const go = new Go();
+        let mod, inst;
+        WebAssembly.instantiateStreaming(fetch("wasm.wasm"), go.importObject).then((result) => {
+            mod = result.module;
+            inst = result.instance;
+            document.getElementById("sendButton").disabled = false;
+            run();
+        }).catch((err) => {
+            console.error(err);
+        });
+
+        async function run() {
+            await go.run(inst);
+            inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance
+        }
+    </script>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <h1>TinyGo WASM</h1>
+            </div>
+            <div class="col-md-8">
+                <img src="img/tinygo.jpg" alt="tinyGo" class="header-image">
+            </div>
+            <div class="col-md-2">
+                <h1>KCM 18</h1>
+                <br/>
+                <h1>Tobias Theel</h1>
+            </div>
+        </div>
+        <hr/>
+        <div class="row main-content">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="form-container">
+                    <label for="message">First name:</label><br/>
+                    <input type="text" id="message" name="message">
+                    <button onClick="run();" id="sendButton" disabled>Send</button>
+                    <br/><br/>
+                    <label for="messagesList">Messages:</label><br/>
+                    <ul id="messagesList">
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Presentation Timer</label>
+                <label id="presentationTimer">00:15</label>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
