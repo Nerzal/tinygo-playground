@@ -39,3 +39,8 @@ Change persmissions of the serial port by using the following command
 ### Start the Server
 
 >  go run server.go
+
+
+### Compiled "main" example
+
+![](tinygo_wasm3.gif)
