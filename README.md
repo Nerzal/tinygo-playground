@@ -19,7 +19,15 @@ Examples do work with Arduino Uno
 [turorial](https://www.arduino.cc/en/Tutorial/HelloWorld)
 [image](https://www.arduino.cc/en/uploads/Tutorial/LCD_Base_bb_Fritz.png)
 
->  tinygo flash --target=arduino cmd/hello-display/display.go
+>  tinygo flash --target=arduino cmd/hello-display/main.go
+
+## Debugging
+
+use println("text)
+
+And when the arduino is running do 
+
+> cat /dev/ttyACM0
 
 ## Common Problems
 

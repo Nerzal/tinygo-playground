@@ -5,7 +5,33 @@ import (
 	"syscall/js"
 )
 
+
+// Service is used as service
+type Service interface {
+}
+
+type service struct {
+
+}
+
+// NewService instantiates a new Service
+func NewService() Service {
+   return &service{}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 func main() {
+
 }
 
 //go:export add
