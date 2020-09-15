@@ -2,6 +2,10 @@
 
 Examples do work with Arduino Uno
 
+## starting vscode
+
+> export GOOS=linux; export GOARCH=arm; export GOFLAGS=-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none; code
+
 ## Flashing blink-sos
 
 >  tinygo flash --target=arduino cmd/blink-sos/sos.go
