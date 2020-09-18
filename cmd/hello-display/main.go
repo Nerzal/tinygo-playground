@@ -4,7 +4,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/hd44780i2c"
+	"github.com/tinygo-org/drivers/hd44780i2c"
 )
 
 // change these to test a different UART or pins if available
